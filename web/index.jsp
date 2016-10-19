@@ -5,8 +5,8 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="modelos.Funcionario"%>
-<%@page import="admin.dao.FuncionarioDao"%>
+<%@page import="models.Funcionario"%>
+<%@page import="controllers.FuncionarioDao"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="admin.ConnectionFactory"%>
 
@@ -18,8 +18,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <title>Funcionarios</title>
     </head>
     <body>
@@ -39,6 +39,23 @@
                 </div>
             </div>
         </nav>
+        <div class="modal fade" id="confirmationModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Confirmar exclusão</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Você tem certeza que deseja excluir o funcionario xxxxx ?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Confirmar</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col col-sm-offset-0 col-sm-12 col-md-offset-2 col-md-8">
             <h1>Funcionários</h1>
             <a class="btn btn-success pull-right" href="novoFuncionario.jsp">Adicionar <span class="glyphicon glyphicon-plus"></span></a>
@@ -72,7 +89,7 @@
                         <td>@mdo</td>
                         <td>@mdo</td>
                         <td>@mdo</td>
-                        <td><button class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span> </button><button class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></button></td>
+                        <td><button class="btn btn-sm btn-warning" onclick="editFunc()"><span class="glyphicon glyphicon-pencil"></span> </button><button class="btn btn-sm btn-danger" onclick="removeFunc()"><span class="glyphicon glyphicon-trash"></span></button></td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -86,5 +103,10 @@
                 </tbody>
             </table>
         </div>
+        <script>
+            function removeFunc(){
+                $('#confirmationModal').modal('show');
+            }
+        </script>
     </body>
 </html>
