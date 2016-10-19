@@ -29,7 +29,7 @@ public class FuncionarioDao {
                 " values (?,?,?,?,?)";
 
         try {
-               PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = connection.prepareStatement(sql);
 
             // seta os valores
 
@@ -74,4 +74,32 @@ public class FuncionarioDao {
             throw new RuntimeException(e);
         }
     }
+    public void updateFuncionario(Funcionario func) {
+        String sql = "update contatos set nome=?, email=?, cargo=?, salario=?" +
+                "dataNascimento=? where id=?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, func.getNome());
+            stmt.setString(2, func.getEmail());
+            stmt.setString(3, func.getCargo());
+            stmt.setDouble(4, func.getSalario());
+            stmt.setDate(5, new Date(func.getDataNascimento().getTime()));
+            stmt.setLong(6, func.getId());
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void removeFuncionario(Funcionario func) {
+     try {
+         PreparedStatement stmt = connection.prepareStatement("delete from contatos where id=?");
+         stmt.setLong(1, func.getId());
+         stmt.execute();
+         stmt.close();
+     } catch (SQLException e) {
+         throw new RuntimeException(e);
+     }
+ }
 }
