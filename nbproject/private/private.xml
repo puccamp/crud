@@ -3,9 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/developer/NetBeansProjects/FuncionariosCRUD/src/java/admin/dao/FuncionarioDao.java</file>
-            <file>file:/Users/developer/NetBeansProjects/FuncionariosCRUD/src/java/modelos/Funcionario.java</file>
-            <file>file:/Users/developer/NetBeansProjects/FuncionariosCRUD/web/index.jsp</file>
+            <file>file:/Users/developer/Documents/github/crud/src/java/controllers/FuncionarioDao.java</file>
         </group>
     </open-files>
 </project-private>

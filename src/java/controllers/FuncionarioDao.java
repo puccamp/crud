@@ -49,21 +49,19 @@ public class FuncionarioDao {
     
     public List<Funcionario> getFuncionarios() {
         try {
-            List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+            List<Funcionario> funcionarios = new ArrayList<>();
             PreparedStatement stmt = this.connection.
                     prepareStatement("select * from funcionario");
             ResultSet rs = stmt.executeQuery();
-
+            Funcionario func;
             while (rs.next()) {
-
-                Funcionario func = new Funcionario();
+                func = new Funcionario();
                 func.setId(rs.getLong("id"));
                 func.setNome(rs.getString("nome"));
                 func.setEmail(rs.getString("email"));
                 func.setCargo(rs.getString("cargo"));
                 func.setSalario(rs.getDouble("salario"));
                 func.setDataNascimento(rs.getDate("dataNascimento"));
-
                 
                 funcionarios.add(func);
             }

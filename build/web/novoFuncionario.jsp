@@ -25,7 +25,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">CRUD</a>
+                    <a class="navbar-brand" href="index.jsp">CRUD</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbar">

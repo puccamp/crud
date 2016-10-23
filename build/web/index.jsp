@@ -62,7 +62,6 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Nome</th>
                         <th>E-Mail</th>
                         <th>Data de Aniversario</th>
@@ -75,31 +74,18 @@
                     <%
                         FuncionarioDao dao = new FuncionarioDao();
                         List<Funcionario> funcionarios = dao.getFuncionarios();
-                        Funcionario f;
+                        request.setAttribute("funcionarios", funcionarios);
                     %>
-                    <c:forEach var="i" begin="0" end="${funcionarios.size()}">
-                        <c:set var="func" value="${funcionarios.get(i)}" scope="page" />
-
-                        Item <c:out value="${func}"/><p>
+                    <c:forEach items="${funcionarios}" var="funcionario"> 
+                        <tr>
+                            <td><c:out value="${funcionario.getNome()}"/></td>
+                            <td><c:out value="${funcionario.getEmail()}"/></td>
+                            <td><c:out value="${funcionario.getDataNascimento()}"/></td>
+                            <td><c:out value="${funcionario.getCargo()}"/></td>
+                            <td><c:out value="${funcionario.getSalario()}"/></td>
+                            <td><button class="btn btn-sm btn-warning" onclick="editFunc()"><span class="glyphicon glyphicon-pencil"></span> </button><button class="btn btn-sm btn-danger" onclick="removeFunc()"><span class="glyphicon glyphicon-trash"></span></button></td>
+                        </tr>
                     </c:forEach>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td><button class="btn btn-sm btn-warning" onclick="editFunc()"><span class="glyphicon glyphicon-pencil"></span> </button><button class="btn btn-sm btn-danger" onclick="removeFunc()"><span class="glyphicon glyphicon-trash"></span></button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
