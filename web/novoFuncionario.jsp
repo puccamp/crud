@@ -32,7 +32,7 @@
                 </div>
             </div>
         </nav>
-        <form class="form-horizontal" method="POST" action="addFuncionario">
+        <form class="form-horizontal" method="POST" action="servletFuncionario">
             <fieldset>
             <legend>Novo funcionario</legend>
             <div class="form-group">

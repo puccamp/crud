@@ -24,7 +24,7 @@ public class FuncionarioDao {
     }
   
     public void addFuncionario(Funcionario funcionario) {
-        String sql = "insert into funcionario " +
+        String sql = "insert into funcionarios " +
                 "(nome,email,cargo,salario,dataNascimento)" +
                 " values (?,?,?,?,?)";
 
@@ -51,7 +51,7 @@ public class FuncionarioDao {
         try {
             List<Funcionario> funcionarios = new ArrayList<>();
             PreparedStatement stmt = this.connection.
-                    prepareStatement("select * from funcionario");
+                    prepareStatement("select * from funcionarios");
             ResultSet rs = stmt.executeQuery();
             Funcionario func;
             while (rs.next()) {
@@ -73,7 +73,7 @@ public class FuncionarioDao {
         }
     }
     public void updateFuncionario(Funcionario func) {
-        String sql = "update contatos set nome=?, email=?, cargo=?, salario=?" +
+        String sql = "update funcionarios set nome=?, email=?, cargo=?, salario=?" +
                 "dataNascimento=? where id=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -90,10 +90,10 @@ public class FuncionarioDao {
         }
     }
     
-    public void removeFuncionario(Funcionario func) {
+    public void removeFuncionario(long idFunc) {
      try {
-         PreparedStatement stmt = connection.prepareStatement("delete from contatos where id=?");
-         stmt.setLong(1, func.getId());
+         PreparedStatement stmt = connection.prepareStatement("delete from funcionarios where id=?");
+         stmt.setLong(1, idFunc);
          stmt.execute();
          stmt.close();
      } catch (SQLException e) {

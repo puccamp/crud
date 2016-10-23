@@ -46,13 +46,16 @@
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                       <h4 class="modal-title">Confirmar exclusão</h4>
                     </div>
-                    <div class="modal-body">
-                      <p>Você tem certeza que deseja excluir o funcionario xxxxx ?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Confirmar</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    </div>
+                    <form  method="post" action="servletFuncionario?method=delete">
+                        <div class="modal-body">
+                            <p>Você tem certeza que deseja excluir o funcionario <span id="nomeExcluir"></span> ?</p>
+                            <input hidden type="text" id="idExcluir" name="idExcluir"/>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-danger">Confirmar</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -83,14 +86,16 @@
                             <td><c:out value="${funcionario.getDataNascimento()}"/></td>
                             <td><c:out value="${funcionario.getCargo()}"/></td>
                             <td><c:out value="${funcionario.getSalario()}"/></td>
-                            <td><button class="btn btn-sm btn-warning" onclick="editFunc()"><span class="glyphicon glyphicon-pencil"></span> </button><button class="btn btn-sm btn-danger" onclick="removeFunc()"><span class="glyphicon glyphicon-trash"></span></button></td>
+                            <td><button class="btn btn-sm btn-warning" onclick="editFunc('${funcionario.getId()}')"><span class="glyphicon glyphicon-pencil"></span> </button><button class="btn btn-sm btn-danger" onclick="removeFunc('${funcionario.getNome()}','${funcionario.getId()}')"><span class="glyphicon glyphicon-trash"></span></button></td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
         </div>
         <script>
-            function removeFunc(){
+            function removeFunc(nome,id){
+                $("#nomeExcluir").text(nome);
+                $("#idExcluir").val(id);
                 $('#confirmationModal').modal('show');
             }
         </script>
