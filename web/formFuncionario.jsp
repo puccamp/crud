@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,34 +36,35 @@
         <form class="form-horizontal" method="POST" action="servletFuncionario">
             <fieldset>
             <legend>Novo funcionario</legend>
+            <input hidden type="text" name="id" value="<c:out value='${func.getId()}'/>" />
             <div class="form-group">
                 <label class="col-md-4 control-label" for="txtNome">Nome:</label>  
                 <div class="col-md-4">
-                <input id="txtNome" name="nome" type="text" placeholder="Ex: João da Silva" class="form-control input-md" required="true">
+                <input id="txtNome" name="nome" type="text" placeholder="Ex: João da Silva" class="form-control input-md" required="true" value="<c:out value='${func.getNome()}'/>">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="txtEmail">Email:</label>  
                 <div class="col-md-4">
-                    <input id="txtEmail" name="email" type="text" placeholder="Ex: joaodasilva@email.com" class="form-control input-md" required="true">
+                    <input id="txtEmail" name="email" type="text" placeholder="Ex: joaodasilva@email.com" class="form-control input-md" required="true" value="<c:out value='${func.getEmail()}'/>">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="txtDatanasc">Data de Nascimento</label>  
                 <div class="col-md-4">
-                    <input id="txtDatanasc" name="datanasc" type="text" placeholder="Ex: 02/04/1994" class="form-control input-md" required="">
+                    <input id="txtDatanasc" name="datanasc" type="text" placeholder="Ex: 02/04/1994" class="form-control input-md" required="true" value="<c:out value='${func.getDataNascimentoString()}'/>">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="cbCargo">Cargo:</label>  
                 <div class="col-md-4">
-                    <input id="txtCargo" name="cargo" type="text" placeholder="Ex: Analista de Sistemas" class="form-control input-md" required="true">
+                    <input id="txtCargo" name="cargo" type="text" placeholder="Ex: Analista de Sistemas" class="form-control input-md" required="true" value="<c:out value='${func.getCargo()}'/>">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="txtSalario">Salário:</label>  
                 <div class="col-md-4">
-                    <input id="txtSalario" name="salario" type="text" placeholder="Ex: 2000.00" class="form-control input-md" required="true">
+                    <input id="txtSalario" name="salario" type="text" placeholder="Ex: 2000.00" class="form-control input-md" required="true" value="<c:out value='${func.getSalario()}'/>">
                 </div>
             </div>
             <div class="form-group">

@@ -1,5 +1,6 @@
 package models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -36,6 +37,12 @@ public class Funcionario {
 
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+    
+    public String getDataNascimentoString(){
+        SimpleDateFormat df= new SimpleDateFormat("dd/MM/yyyy");
+        String resultString =  df.format(this.dataNascimento);
+        return resultString;
     }
 
     public String getCargo() {

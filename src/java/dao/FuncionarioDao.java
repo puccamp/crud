@@ -1,4 +1,4 @@
-package controllers;
+package dao;
 
 import admin.ConnectionFactory;
 import admin.ConnectionFactory;
@@ -32,7 +32,6 @@ public class FuncionarioDao {
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             // seta os valores
-
             stmt.setString(1,funcionario.getNome());
             stmt.setString(2,funcionario.getEmail());
             stmt.setString(3,funcionario.getCargo());
@@ -73,8 +72,7 @@ public class FuncionarioDao {
         }
     }
     public void updateFuncionario(Funcionario func) {
-        String sql = "update funcionarios set nome=?, email=?, cargo=?, salario=?" +
-                "dataNascimento=? where id=?";
+        String sql = "update funcionarios set nome=?, email=?, cargo=?, salario=?, dataNascimento=? WHERE id=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, func.getNome());
@@ -89,15 +87,40 @@ public class FuncionarioDao {
             throw new RuntimeException(e);
         }
     }
-    
     public void removeFuncionario(long idFunc) {
-     try {
-         PreparedStatement stmt = connection.prepareStatement("delete from funcionarios where id=?");
-         stmt.setLong(1, idFunc);
-         stmt.execute();
-         stmt.close();
-     } catch (SQLException e) {
-         throw new RuntimeException(e);
-     }
- }
+        try {
+            PreparedStatement stmt = connection.prepareStatement("delete from funcionarios where id=?");
+            stmt.setLong(1, idFunc);
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public Funcionario getFuncById(long idFunc){
+        Funcionario func = new Funcionario();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement("select * from funcionarios where id=?");
+            stmt.setLong(1, idFunc);
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                func = new Funcionario();
+                func.setId(rs.getLong("id"));
+                func.setNome(rs.getString("nome"));
+                func.setEmail(rs.getString("email"));
+                func.setCargo(rs.getString("cargo"));
+                func.setSalario(rs.getDouble("salario"));
+                func.setDataNascimento(rs.getDate("dataNascimento"));
+                
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return func;
+    }
 }

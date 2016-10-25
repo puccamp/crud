@@ -4,9 +4,9 @@
     Author     : Breno Antunes
 --%>
 
-<%@page import="java.util.List"%>
+<%@page import="java.util.List" %>
 <%@page import="models.Funcionario"%>
-<%@page import="controllers.FuncionarioDao"%>
+<%@page import="dao.FuncionarioDao"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="admin.ConnectionFactory"%>
 
@@ -61,7 +61,7 @@
         </div>
         <div class="col col-sm-offset-0 col-sm-12 col-md-offset-2 col-md-8">
             <h1>Funcionários</h1>
-            <a class="btn btn-success pull-right" href="novoFuncionario.jsp">Adicionar <span class="glyphicon glyphicon-plus"></span></a>
+            <a class="btn btn-success pull-right" href="formFuncionario.jsp">Adicionar <span class="glyphicon glyphicon-plus"></span></a>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -83,10 +83,15 @@
                         <tr>
                             <td><c:out value="${funcionario.getNome()}"/></td>
                             <td><c:out value="${funcionario.getEmail()}"/></td>
-                            <td><c:out value="${funcionario.getDataNascimento()}"/></td>
+                            <td><c:out value="${funcionario.getDataNascimentoString()}"/></td>
                             <td><c:out value="${funcionario.getCargo()}"/></td>
                             <td><c:out value="${funcionario.getSalario()}"/></td>
-                            <td><button class="btn btn-sm btn-warning" onclick="editFunc('${funcionario.getId()}')"><span class="glyphicon glyphicon-pencil"></span> </button><button class="btn btn-sm btn-danger" onclick="removeFunc('${funcionario.getNome()}','${funcionario.getId()}')"><span class="glyphicon glyphicon-trash"></span></button></td>
+                            <td>
+                                <form method="post" action="servletFuncionario?method=put&funcId=${funcionario.getId()}">
+                                    <button class="btn btn-sm btn-warning" type="submit"><span class="glyphicon glyphicon-pencil"></span></button>
+                                </form>
+                                <button class="btn btn-sm btn-danger" onclick="removeFunc('${funcionario.getNome()}','${funcionario.getId()}')"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
